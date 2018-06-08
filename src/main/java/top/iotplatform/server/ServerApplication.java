@@ -1,4 +1,4 @@
-package top.iotpaltform.server;
+package top.iotplatform.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
