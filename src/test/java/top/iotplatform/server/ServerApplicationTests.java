@@ -1,4 +1,4 @@
-package top.iotpaltform.server;
+package top.iotplatform.server;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
