@@ -16,7 +16,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUserById(int id) {
-        String sql = "select * from users where id = ?";
+        String sql = "SELECT * FROM users WHERE id = ?";
         List<User> list = jdbcTemplate.query(sql, new Object[]{id}, new BeanPropertyRowMapper(User.class));
         if (list != null && list.size() > 0) {
             return list.get(0);
@@ -27,7 +27,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUserByName(String name) {
-        String sql = "select * from users where user_name = ?";
+        String sql = "SELECT * FROM users WHERE user_name = ?";
         List<User> list = jdbcTemplate.query(sql, new Object[]{name}, new BeanPropertyRowMapper(User.class));
         if (list != null && list.size() > 0) {
             return list.get(0);
@@ -38,23 +38,37 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> getUserList() {
-        String sql = "select * from users";
+        String sql = "SELECT * FROM users";
         List<User> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class));
         return list;
     }
 
     @Override
     public int add(User user) {
-        return 0;
+        String sql = "INSERT INTO users (user_name, user_passwd, user_group) VALUES (?, ?, ?)";
+        return jdbcTemplate.update(sql, user.getUserName(), user.getUserPasswd(), user.getUserGroup());
     }
 
     @Override
-    public int update(User user) {
-        return 0;
+    public int update(int id, User user) {
+        String sql = "UPDATE users SET user_name=?, user_passwd=?, user_group=? WHERE id=?";
+        return jdbcTemplate.update(sql, user.getUserName(), user.getUserPasswd(), user.getUserGroup(), id);
     }
 
     @Override
     public int delete(int id) {
-        return 0;
+        String sql = "DELETE FROM users WHERE id=?";
+        return jdbcTemplate.update(sql, id);
+    }
+
+    @Override
+    public boolean isUsernameExist(String name) {
+        String sql = "SELECT * FROM users WHERE user_name=?";
+        List<User> list = jdbcTemplate.query(sql, new Object[]{name}, new BeanPropertyRowMapper(User.class));
+        if (list != null && list.size() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

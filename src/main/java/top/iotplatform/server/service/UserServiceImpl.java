@@ -28,4 +28,24 @@ public class UserServiceImpl implements UserService {
         return userDAO.getUserList();
     }
 
+    @Override
+    public int add(User user) {
+        return userDAO.add(user);
+    }
+
+    @Override
+    public int update(int id, User user) {
+        return userDAO.update(id, user);
+    }
+
+    @Override
+    public int delete(int id) {
+        return userDAO.delete(id);
+    }
+
+    @Override
+    public boolean isUsernameExist(String name) {
+        return userDAO.isUsernameExist(name);
+    }
+
 }
