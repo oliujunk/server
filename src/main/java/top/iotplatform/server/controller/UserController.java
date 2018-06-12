@@ -8,8 +8,10 @@ import top.iotplatform.server.bean.User;
 import top.iotplatform.server.service.UserService;
 
 import java.util.List;
-import java.util.function.Predicate;
 
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
+@RequestMapping("/api")
 @RestController
 public class UserController {
     @Autowired
