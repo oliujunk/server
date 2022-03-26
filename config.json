@@ -1,0 +1,14 @@
+{
+  "database": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "username": "root",
+    "password": "xph87510227"
+  },
+  "apiServer": {
+    "port": 8005
+  },
+  "commandServer": {
+    "port": 8899
+  }
+}
